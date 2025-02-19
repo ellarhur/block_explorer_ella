@@ -1,0 +1,25 @@
+{
+  "name": "block_explorer_ella",
+  "version": "1.0.0",
+  "description": "Min uppgift i JS-kursen \"Block Explorer\"",
+  "main": "index.js",
+  "scripts": {
+    "ether": "node app-ethers.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ellarhur/block_explorer_ella.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ellarhur/block_explorer_ella/issues"
+  },
+  "homepage": "https://github.com/ellarhur/block_explorer_ella#readme",
+  "devDependencies": {
+    "ganache": "^7.9.2"
+  },
+  "dependencies": {
+    "ethers": "^6.13.5"
+  }
+}
