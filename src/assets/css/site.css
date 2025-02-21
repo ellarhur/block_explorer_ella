@@ -119,3 +119,102 @@ text-decoration:underline;
 a:visited{
 color:#70142a; 
 }
+
+
+#transactions {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#transactions li {
+  background-color: #fff;
+  border: 2px solid #70142a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: 'Courier New', Courier, monospace;
+  color: #70142a;
+  transition: all 0.3s ease;
+}
+
+#transactions li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#transactions li strong {
+  color: #f43580;
+  margin-right: 0.5rem;
+}
+
+#transactionsList {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+#transactionsList h3 {
+  color: #70142a;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+#blocks-container {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#blocks-container li {
+  background-color: #fff;
+  border: 2px solid #70142a;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-family: 'Courier New', Courier, monospace;
+  color: #70142a;
+  transition: all 0.3s ease;
+}
+
+#blocks-container li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  color: #f43580;
+}
+
+#blocks-container li strong {
+  color: #f43580;
+  margin-right: 0.5rem;
+  font-size:1.5rem;
+}
+
+.balance-result {
+    background-color: #fff;
+    border: 2px solid #70142a;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem auto;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    font-family: 'Courier New', Courier, monospace;
+    color: #70142a;
+    transition: all 0.3s ease;
+    max-width: 400px;
+}
+
+.balance-result:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.balance-result strong {
+    color: #f43580;
+    margin-right: 0.5rem;
+}

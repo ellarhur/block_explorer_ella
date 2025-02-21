@@ -1,3 +1,5 @@
+// nödvändigt pga ganache och viem
+
 import {
   createPublicClient,
   createWalletClient,

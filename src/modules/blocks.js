@@ -1,24 +1,26 @@
-async function getTransactionHistory() {
-    try {
-        const blockCount = await publicClient.getBlockNumber();
-        const transactions = [];
-        
-        // Hämta de senaste 10 blocken
-        for (let i = 0; i <= 10; i++) {
-            const block = await publicClient.getBlock({
-                blockNumber: blockCount - BigInt(i)
-            });
-            transactions.push(...block.transactions);
-        }
-        
-        return transactions;
-    } catch (error) {
-        console.error('Fel vid hämtning av transaktioner:', error);
-        throw error;
-    }
-  }
+import { createClient } from './explorer.js';
 
-  const transactions = await getTransactionHistory();
-  console.log(transactions);
-  
-  export { getTransactionHistory };
+const publicClient = createClient();
+
+async function getLatestBlocks(count = 10) {
+    try {
+        const latestBlockNumber = await publicClient.getBlockNumber();
+        const blocks = [];
+
+        for (let i = 0; i < count; i++) {
+            const blockNumber = latestBlockNumber - BigInt(i);
+            if (blockNumber < 0n) break;
+
+            const block = await publicClient.getBlock({
+                blockNumber: blockNumber
+            });
+            blocks.push(block);
+        }
+
+        return blocks;
+    } catch (error) {
+        throw new Error(`Fel vid hämtning av block: ${error.message}`);
+    }
+}
+
+export { getLatestBlocks };

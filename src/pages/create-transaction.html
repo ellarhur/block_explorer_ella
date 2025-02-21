@@ -7,7 +7,7 @@
       src="https://kit.fontawesome.com/55174c58a9.js"
       crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../assets/css/site.css" />
-    <script type-="module" src="./src/modules/main.js" defer></script>
+    <script type="module" src="../modules/main.js" defer></script>
     <title>Ella's Block Explorer</title>
   </head>
   <header>
@@ -31,9 +31,9 @@
       <input type="number" id="value" placeholder="Amount in ETH" step="0.000001" required>
       <button type="submit">Send Transaction</button>
   </form>
+  <div id="transactionsList">
+    <h2>Senaste transaktionerna</h2>
+    <ul id="transactions"></ul>
   </div>
-  <p id="result"></p>
-
-
 </body>
 </html>

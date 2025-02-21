@@ -1,36 +1,55 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const transactionForm = document.getElementById('transactionForm');
-  const resultElement = document.getElementById('result');
+import { parseEther } from 'https://esm.sh/viem';
+import { createWallet } from './explorer.js';
 
-  transactionForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
+const walletClient = createWallet();
 
-      const fromAddress = document.getElementById('from').value;
-      const toAddress = document.getElementById('to').value;
-      const amount = document.getElementById('value').value;
+async function sendTransaction(fromAddress, toAddress, amount) {
+    try {
+        const hash = await walletClient.sendTransaction({
+            account: fromAddress,
+            to: toAddress,
+            value: parseEther(amount.toString())
+        });
+        return hash;
+    } catch (error) {
+        throw new Error(`Fel vid transaktion: ${error.message}`);
+    }
+}
 
-      try {
-          const transaction = await walletClient.sendTransaction({
-              account: fromAddress,
-              to: toAddress,
-              value: parseEther(amount)
-          });
-          
-          // Visa bekräftelse för användaren
-          resultElement.textContent = `Transaktion lyckades! Hash: ${transaction}`;
-          resultElement.style.color = 'green';
-          
-          // Återställ formuläret
-          transactionForm.reset();
-          
-      } catch (error) {
-          // Visa felmeddelande för användaren
-          resultElement.textContent = `Fel: ${error.message}`;
-          resultElement.style.color = 'red';
-      }
-  });
-});
-const txHash = await sendTransaction(fromAddress, toAddress, amount);
+function handleTransactionForm() {
+    const form = document.getElementById('transactionForm');
+    const transactionsList = document.getElementById('transactions');
 
-export { sendTransaction };
-console.log("hej");
+    if (!form || !transactionsList) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const fromAddress = document.getElementById('from').value;
+        const toAddress = document.getElementById('to').value;
+        const amount = document.getElementById('value').value;
+
+        try {
+            const hash = await sendTransaction(fromAddress, toAddress, amount);
+            
+            const listItem = document.createElement('li');
+            listItem.innerHTML = `
+                <strong>Från:</strong> ${fromAddress.slice(0, 6)}...${fromAddress.slice(-4)} 
+                <strong>Till:</strong> ${toAddress.slice(0, 6)}...${toAddress.slice(-4)} 
+                <strong>Belopp:</strong> ${amount} ETH 
+                <strong>Hash:</strong> ${hash.slice(0, 10)}...
+            `;
+            
+            transactionsList.insertBefore(listItem, transactionsList.firstChild);
+            form.reset();
+
+        } catch (error) {
+            console.error('Transaktionsfel:', error);
+            alert(`Ett fel uppstod: ${error.message}`);
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', handleTransactionForm);
+
+export { sendTransaction, handleTransactionForm };
