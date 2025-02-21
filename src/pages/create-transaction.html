@@ -22,5 +22,19 @@
     </ul>
   </nav>
 </header>
-  </body>
+<body>
+  <div class="container">
+
+  <h2>Create Transaction</h2>
+  <form id="transactionForm">
+      <input type="text" id="from" placeholder="From your wallet address" required>
+      <input type="text" id="to" placeholder="Your recipient's address" required>
+      <input type="number" id="value" placeholder="Amount in ETH" step="0.000001" required>
+      <button type="submit">Send Transaction</button>
+  </form>
+  </div>
+  <p id="result"></p>
+
+
+</body>
 </html>
